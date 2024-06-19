@@ -11,16 +11,17 @@ import { hp, wp } from "../common/common";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
+
 export default function Page() {
   const [assets] = useAssets([require("../assets/Netflix_Series.jpeg")]);
   const router = useRouter();
   return (
     <View style={styles.container}>
-      
+      {/* "https://i.pinimg.com/736x/df/b9/cb/dfb9cbff37218eaf4c6959de8803e838.jpg" */}
       <StatusBar hidden />
       {assets && (
         <Image
-          source={{ uri: "https://i.pinimg.com/736x/df/b9/cb/dfb9cbff37218eaf4c6959de8803e838.jpg" }}
+          source={{ uri: assets[0].uri }}
           style={styles.bgImg}
           resizeMode="cover"
         />

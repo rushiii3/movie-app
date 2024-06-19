@@ -5,7 +5,7 @@ import { FFmpegKit } from "ffmpeg-kit-react-native";
 import RNFS from "react-native-fs";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import notifee from '@notifee/react-native';
+// import notifee from '@notifee/react-native';
 const DownloadContext = createContext();
 
 export const useDownload = () => {
@@ -17,32 +17,32 @@ export const DownloadProvider = ({ children }) => {
   const [downloadedUri, setDownloadedUri] = useState(null);
   const [downloadTask, setDownloadTask] = useState(null);
   const [isDownloading, setIsDownloading] = useState(false);
-  async function onDisplayNotification() {
-    // Request permissions (required for iOS)
-    await notifee.requestPermission()
+  // async function onDisplayNotification() {
+  //   // Request permissions (required for iOS)
+  //   await notifee.requestPermission()
 
-    // Create a channel (required for Android)
-    const channelId = await notifee.createChannel({
-      id: 'default',
-      name: 'Default Channel',
-    });
-    notifee.setBadgeCount(1).then(() => console.log('Badge count set!'));
+  //   // Create a channel (required for Android)
+  //   const channelId = await notifee.createChannel({
+  //     id: 'default',
+  //     name: 'Default Channel',
+  //   });
+  //   notifee.setBadgeCount(1).then(() => console.log('Badge count set!'));
 
-    // Display a notification
-    await notifee.displayNotification({
-      title: 'MeshFlix',
-      body: 'Main body content of the notification',
-      android: {
-        channelId,
-        smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
-        // pressAction is needed if you want the notification to open the app when pressed
-        pressAction: {
-          id: 'default',
-        },
-      },
+  //   // Display a notification
+  //   await notifee.displayNotification({
+  //     title: 'MeshFlix',
+  //     body: 'Main body content of the notification',
+  //     android: {
+  //       channelId,
+  //       smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+  //       // pressAction is needed if you want the notification to open the app when pressed
+  //       pressAction: {
+  //         id: 'default',
+  //       },
+  //     },
       
-    });
-  }
+  //   });
+  // }
   const callback = (downloadProgress) => {
     const progress =
       downloadProgress.totalBytesWritten /

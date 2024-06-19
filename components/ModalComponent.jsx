@@ -65,7 +65,6 @@ const formatLabel = (resolution, bandwidth) => {
     default:
       break;
   }
-
   return label;
 };
 

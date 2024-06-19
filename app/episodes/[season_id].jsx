@@ -8,14 +8,14 @@ import {
 import React from "react";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Octicons from "@expo/vector-icons/Octicons";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import useFetch from "../../hooks/useFetch";
 import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
 import Animated, { FadeInDown } from "react-native-reanimated";
 const Page = () => {
   const blurhash = "L02rs+WB00of~qM{9F%M~qM{9F%M";
-
+  const router = useRouter();
   const { season_id, name, showid } = useLocalSearchParams();
   const { data: episodes } = useFetch({
     endpoint: `https://api.themoviedb.org/3/tv/${showid}/season/${season_id}?language=en-US`,
@@ -78,7 +78,12 @@ const Page = () => {
               paddingRight: 15,
             }}
           >
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+          router.push({ pathname: "/player/[id]", params:{
+            "id":`${showid}?s=${season_id}&e=${item?.episode_number}`,
+            "backdrop":item.still_path
+          } });
+        }}>
               <FontAwesome5 name="play" size={18} color="white" />
             </TouchableOpacity>
             <TouchableOpacity>

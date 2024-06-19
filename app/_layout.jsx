@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import useGenreStore from "../store/useGenre";
 import useFetch from "../hooks/useFetch";
 const queryClient = new QueryClient();
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 const InitialLayout = () => {
   const { movieGenre, setMovieGenre, setShowGenre } = useGenreStore();
   const router = useRouter();
@@ -32,6 +33,12 @@ const InitialLayout = () => {
       setShowGenre(showGenresResponse.data);
     }
   }, [showGenresResponse.data]);
+  // useEffect(() => {
+  // router.push({
+  //   pathname:"/player/[id]"
+  // })
+  // }, [])
+  
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -150,6 +157,7 @@ const PageLayout = () => {
         <InitialLayout />
       </DownloadProvider>
     </QueryClientProvider>
+
   );
 };
 
